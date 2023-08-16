@@ -2,7 +2,7 @@ var board = [];
 var  rows = 8;
 var columns = 8;
 
-var minesCount = 5;
+var minesCount = 5; // number of mines
 var minesLocation = []; // "2-2", "3-7", "4-6"
 
 var tilesClicked = 0; // goal to click all tiles except the ones containing mines
@@ -15,11 +15,23 @@ window.onload = function() {
 }
 
 function setMines(mines) {
-    minesLocation.push("2-2");
-    minesLocation.push("3-7");
-    minesLocation.push("4-6");
-    minesLocation.push("1-1");
-    minesLocation.push("2-5");
+    // minesLocation.push("2-2");
+    // minesLocation.push("3-7");
+    // minesLocation.push("4-6");
+    // minesLocation.push("1-1");
+    // minesLocation.push("2-5");
+
+    let minesLeft = minesCount;
+    while (minesLeft > 0) {
+        let r = Math.floor(Math.random() * rows);
+        let c = Math.floor(Math.random() * columns);
+        let id = r.toString() + "-" + c.toString();
+
+        if (!minesLocation.includes(id)) {
+            minesLocation.push(id);
+            minesLeft--; 
+        }
+    }
 }
 
 function startGame() {
